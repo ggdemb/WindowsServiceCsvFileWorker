@@ -13,11 +13,11 @@ namespace WindowsServiceCsvFileWorker.Model
                 return false;
             if (elements.Any(x => x is null))
                 return false;
-            if (elements.Skip(1).All(x => x.Map((v) => long.TryParse(v, out _))))
+            if (elements.Skip(1).Any(x => x.Map((v) => !long.TryParse(v, out _))))
                 return false;
             return true;
         }
-        public  AirlineSafety()
+        public AirlineSafety()
         {
 
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using WindowsServiceCsvFileWorker.Model;
 
@@ -17,7 +18,7 @@ namespace WindowsServiceCsvFileWorker.Services
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task ProcesFileIfExsists()
+        public async Task ProcesFileIfExsistsAsync(CancellationToken stoppingToken)
         {
             var filePath = @"C:\Users\dembo\source\repos\My projects\WindowsServiceCsvFileWorker\WindowsServiceCsvFileWorker\SampleData\airline-safety.csv";//this should be injected from options;
 
@@ -27,25 +28,29 @@ namespace WindowsServiceCsvFileWorker.Services
                 {
                     return await Disposable.UsingAsync(
                     () => new StreamReader(stream),
-                    GetAllLines);
+                    GetAllLines(stoppingToken));
                 });
 
             var deserializedObjects = result.Select(AirlineSafety.Create).ToList();
         }
 
-        private static async Task<List<string>> GetAllLines(StreamReader streamReader)
+        //https://codeblog.jonskeet.uk/2012/01/30/currying-vs-partial-function-application/
+        private static Func<StreamReader, Task<List<string>>> GetAllLines(CancellationToken stoppingToken)
         {
-            List<string> lines = new List<string>();
-            string line;
-
-            if (await streamReader.ReadLineAsync() is object) //skip line, how can I do this in more functional way?
+            return async streamReader =>
             {
-                while ((line = await streamReader.ReadLineAsync()) is object)
+                List<string> lines = new List<string>();
+                string line;
+
+                if (await streamReader.ReadLineAsync() is object) //skip line, how can I do this in more functional way?
                 {
-                    lines.Add(line);
+                    while (!stoppingToken.IsCancellationRequested && (line = await streamReader.ReadLineAsync()) is object)
+                    {
+                        lines.Add(line);
+                    }
                 }
-            }
-            return lines;
+                return lines;
+            };
         }
     }
 }

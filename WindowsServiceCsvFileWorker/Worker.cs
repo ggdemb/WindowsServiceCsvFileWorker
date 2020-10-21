@@ -26,7 +26,7 @@ namespace WindowsServiceCsvFileWorker
             {
                 while (!stoppingToken.IsCancellationRequested)
                 {
-                    await _service.ProcesFileIfExsists();
+                    await _service.ProcesFileIfExsistsAsync(stoppingToken);
                     _logger.LogInformation("Worker running at: {time}.", DateTimeOffset.Now);
                     await Task.Delay(1000, stoppingToken);
                 }
