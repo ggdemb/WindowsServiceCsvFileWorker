@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceCsvFileWorker", "WindowsServiceCsvFileWorker\WindowsServiceCsvFileWorker.csproj", "{718FE2B4-F4DE-4F36-B9EA-09AA0F102FB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Functional.Utilities", "Functional.Utilities\Functional.Utilities.csproj", "{2EDCA7D2-029F-4A22-BF1D-E3766A9A318D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{718FE2B4-F4DE-4F36-B9EA-09AA0F102FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{718FE2B4-F4DE-4F36-B9EA-09AA0F102FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{718FE2B4-F4DE-4F36-B9EA-09AA0F102FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{718FE2B4-F4DE-4F36-B9EA-09AA0F102FB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EDCA7D2-029F-4A22-BF1D-E3766A9A318D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EDCA7D2-029F-4A22-BF1D-E3766A9A318D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EDCA7D2-029F-4A22-BF1D-E3766A9A318D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EDCA7D2-029F-4A22-BF1D-E3766A9A318D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6C0FC19A-463E-4E8C-B152-7031B608601D}
+	EndGlobalSection
+EndGlobal
